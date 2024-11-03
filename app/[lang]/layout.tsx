@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
+import { Inter as FontSans } from "next/font/google";
+import "@/styles/main.css";
 
+import { ThemeProvider } from "@/components/ui/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
+import { cn } from "@/lib/utils";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -12,6 +16,19 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
+
+
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
+// Font files can be colocated inside of `pages`
+const fontHeading = localFont({
+  src: "../../../assets/fonts/CalSans-SemiBold.woff2",
+  variable: "--font-heading",
+});
+
 
 export const metadata: Metadata = {
   title: "Create Next App",

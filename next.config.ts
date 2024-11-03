@@ -6,7 +6,6 @@ const nextConfig: NextConfig = {
     //     serverActions: true,
     // },
     reactStrictMode: false,
-    swcMinify: true,
     images: {
         domains: [
             "public.blob.vercel-storage.com",
