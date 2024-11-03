@@ -1,0 +1,73 @@
+{
+  "server-component": {
+    "welcome": "Welcome"
+  },
+  "mdx": {
+    "title": "What's New in ByBus",
+    "description": "Stay up-to-date with the latest features and improvements in DemandAmp+.",
+    "version": "Version 2.0 (October 2024)",
+    "newFeatures": {
+      "title": "New Features",
+      "list": [
+        {
+          "title": "Campaign Insights Dashboard",
+          "description": "Gain deeper insights into your marketing campaigns with our new dashboard feature..."
+        },
+        {
+          "title": "Real-Time Interpretations",
+          "description": "Introducing our revolutionary real-time interpretations feature! Gain instant insights..."
+        }
+      ]
+    },
+    "enhancements": {
+      "title": "Enhancements",
+      "list": [
+        {
+          "description": "We've optimized the performance of DemandAmp+ to ensure faster load times..."
+        },
+        {
+          "description": "Enjoy a more intuitive and streamlined user interface with updated navigation menus..."
+        }
+      ]
+    },
+    "bugFixes": {
+      "title": "Bug Fixes",
+      "list": [
+        {
+          "description": "We've resolved an issue where interpretations were only available in English..."
+        }
+      ]
+    }
+  },
+  "Auth": {
+    "Login": "Login",
+    "LoginDesc": "Login to your account",
+    "Register": "Register",
+    "RegisterDesc": "Create an account to get started in demandAMP+.",
+    "WelcomeBack": "Welcome back",
+    "LoginMessage": "Enter your email to sign in to your account",
+    "LoginMessage2": "if the login form is not loaded, please check your network",
+    "CreateAnAccount": "Create an account",
+    "RegisterMessage": "Enter your email below to create your account",
+    "agree": "By clicking continue, you agree to our",
+    "TermsOfService": "Terms of Service",
+    "and": "and",
+    "PrivacyPolicy": "Privacy Policy"
+  },
+  "DashBoard": {
+    "Head": "Dashboard",
+    "HeadText": "Recent updates and notifications.",
+    "PleaseWait": "Please Wait"
+  },
+  "Footer": {
+    "AllRightsReserved": "All rights reserved",
+    "AIMessage": "Hi, I'm AI. I am here to help and provide information to the best of my ability.",
+    "AITextAreaPlaceholder": "Type your question here...",
+    "Submit": "Submit",
+    "SubmitShortcut": "Shift + Enter",
+    "translationAlert": "Are you absolutely sure ?",
+    "translationAlertDesc": "make sure you have save your change before continue.",
+    "Continue": "Continue",
+    "Cancel": "Cancel"
+  }
+}

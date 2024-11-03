@@ -1,0 +1,36 @@
+{
+  "server-component": {
+    "welcome": "Welcome"
+  },
+  "Auth": {
+    "Login": "Connexion",
+    "LoginDesc": "Connectez-vous à votre compte",
+    "Register": "S'inscrire",
+    "RegisterDesc": "Créez un compte pour commencer à utiliser demandAMP+.",
+    "WelcomeBack": "Content de vous revoir",
+    "LoginMessage": "Entrez votre adresse e-mail pour vous connecter à votre compte",
+    "LoginMessage2": "si le formulaire de connexion n'est pas chargé, veuillez vérifier votre réseau",
+    "CreateAnAccount": "Créer un compte",
+    "RegisterMessage": "Entrez votre adresse e-mail ci-dessous pour créer votre compte",
+    "agree": "En cliquant sur Continuer, vous acceptez nos",
+    "TermsOfService": "Conditions d'utilisation",
+    "and": "et",
+    "PrivacyPolicy": "Politique de confidentialité"
+  },
+  "DashBoard": {
+    "Head": "Tableau de bord",
+    "HeadText": "Mises à jour récentes et notifications",
+    "PleaseWait": "Veuillez patienter"
+  },
+  "Footer": {
+    "AllRightsReserved": "Tous droits réservés",
+    "AIMessage": "Salut, je suis AI. Je suis ici pour aider et fournir des informations au mieux de mes capacités.",
+    "AITextAreaPlaceholder": "Tapez votre question ici...",
+    "Submit": "Soumettre",
+    "SubmitShortcut": "Shift + Entrer",
+    "translationAlert": "Etes-vous absolument sûr ?",
+    "translationAlertDesc": "assurez-vous d'avoir enregistré vos modifications avant de continuer.",
+    "Continue": "Continuer",
+    "Cancel": "Annuler"
+  }
+}
