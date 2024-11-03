@@ -19,21 +19,55 @@ function getLocale(request: NextRequest): string | undefined {
 
 const PUBLIC_FILE = /\.(.*)$/
 
-export async function middleware(req: NextRequest) {
+export async function middleware(request: NextRequest) {
+    const pathname = request.nextUrl.pathname;
     if (
-        req.nextUrl.pathname.startsWith('/_next') ||
-        req.nextUrl.pathname.includes('/api/') ||
-        PUBLIC_FILE.test(req.nextUrl.pathname)
-    ) {
-        return
-    }
+        [
+            "/manifest.json",
+            "/favicon.ico",
+            "/twitter-image.png",
+            "/android-chrome-192x192.png",
+            "/android-chrome-512x512.png",
+            "/site.webmanifest",
+            "/MuutaaHeaderLogo.svg",
+            "/opengraph-image.png",
+            "/favicon-32x32.png",
+            "/favicon-16x16.png",
+            "/DemandAmpHeaderLogo.svg",
+            "/apple-touch-icon.png",
+            "/apple-icon.png",
+            "/bybus_logo.png",
+            "/bybus_logo_dark.png",
+            // Your other files in `public`
+        ].includes(pathname)
+    )
+        return;
 
-    if (req.nextUrl.locale === 'default') {
-        const locale = req.cookies.get('NEXT_LOCALE')?.value || 'en'
+
+    // Check if there is any supported locale in the pathname
+    const pathnameIsMissingLocale = i18n.locales.every(
+        (locale) =>
+            !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,
+    );
+
+    // Redirect if there is no locale
+    if (pathnameIsMissingLocale) {
+        const locale = getLocale(request);
 
         return NextResponse.redirect(
-            new URL(`/${locale}${req.nextUrl.pathname}${req.nextUrl.search}`, req.url)
-        )
+            new URL(
+                `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
+                request.url,
+            ),
+        );
     }
 
 }
+
+
+export const config = {
+    // Matcher ignoring `/_next/` and `/api/`
+    matcher: [
+        "/((?!api|_next/static|_next/image|favicon.ico|favicon-16x16.png|demandamp_logo.webp|demandamp_logo.png|demandamp_logo_dark.png).*)",
+    ],
+};
