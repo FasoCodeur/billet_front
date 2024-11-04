@@ -1,0 +1,4 @@
+{
+  "*.{js,ts,tsx}": ["yarn run format", "yarn run lint:fix"],
+  "*.json": ["yarn run format"]
+}

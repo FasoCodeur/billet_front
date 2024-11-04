@@ -6,11 +6,12 @@
 // import { ConfigDashboard, dashboardConfig2 } from "@/config/dashboard";
 import { getDictionary } from "@/get-dictionary";
 import { Locale } from "@/i18n-config";
+import { Metadata } from "next";
 import { cookies } from "next/headers";
 
 interface DashboardLayoutProps {
   children?: React.ReactNode;
-  params: { domain: string; lang: Locale };
+  params: { lang: Locale };
 }
 
 
@@ -21,11 +22,16 @@ export type UserNav = {
   logoutUrl: string;
 };
 
+export const metadata: Metadata = {
+  title: "ByBus",
+  description: "Réservez votre billet de bus dans la plus grande facilité. ByBus, c'est la solution pour vos déplacements en bus.",
+};
+
 export default async function DashboardLayout({
   children,
   params,
 }: Readonly<DashboardLayoutProps>) {
-  const { lang, domain } = params;
+  const { lang } = params;
   const dictionary = await getDictionary(lang);
 
 

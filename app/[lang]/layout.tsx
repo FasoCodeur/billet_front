@@ -7,12 +7,12 @@ import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
+  src: "../../assets/fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
+  src: "../../assets/fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
@@ -25,27 +25,22 @@ const fontSans = FontSans({
 
 // Font files can be colocated inside of `pages`
 const fontHeading = localFont({
-  src: "../../../assets/fonts/CalSans-SemiBold.woff2",
+  src: "../../assets/fonts/CalSans-SemiBold.woff2",
   variable: "--font-heading",
 });
 
 
-export const metadata: Metadata = {
-  title: "ByBus",
-  description: "Réservez votre billet de bus dans la plus grande facilité. ByBus, c'est la solution pour vos déplacements en bus.",
-};
-
 interface RootLayoutProps {
   children: React.ReactNode;
-  params: { domain: string; lang: string };
+  params: { lang: string };
 }
 
 export async function generateMetadata({
                                          params,
                                        }: {
-  params: { domain: string; lang: string };
+  params: { lang: string };
 }) {
-  const { domain } = params;
+  const { lang } = params;
   const {
     name: title,
     description,
