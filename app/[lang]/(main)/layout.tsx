@@ -1,3 +1,4 @@
+import React  from 'react';
 // import { MainNav } from "@/components/main-nav";
 // import SearchButton from "@/components/Search/searchButton";
 // import { SiteFooter } from "@/components/site-footer";

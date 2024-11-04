@@ -1,3 +1,4 @@
+import React  from 'react';
 import { DashboardShell } from "@/components/shell";
 import { getDictionary } from "@/get-dictionary";
 import { Locale } from "@/i18n-config";
