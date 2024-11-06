@@ -16,4 +16,5 @@ export const card = {
       duration: 1,
     },
   },
+
 };
