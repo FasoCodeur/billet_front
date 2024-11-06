@@ -45,6 +45,7 @@ const SideMenu = () => {
                                             : ""
                                     }`}
                                 >
+
                                     <item.icon
                                         className={`text-2xl ${
                                             path.startsWith(item.path)
