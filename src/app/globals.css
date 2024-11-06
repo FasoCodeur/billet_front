@@ -2,26 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  height: 100%;
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+::-webkit-scrollbar {
+  display: none;
+}
+
+@layer base {
+  body {
+    @apply tracking-wider;
+  }
+  button {
+    @apply active:scale-95 duration-300 ease-in-out transition-all;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer components {
+  .mobile__menu__shadow__links {
+    -webkit-box-shadow: 3px 2px 11.5px -5px #ff880c;
+    -moz-box-shadow: 3px 2px 11.5px -5px #ff880c;
+    box-shadow: 3px 2px 11.5px -5px #ff880c;
+  }
+  .shadow__1 {
+    -webkit-box-shadow: 0 0 13.5px 3px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0 0 13.5px 3px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 13.5px 3px rgba(0, 0, 0, 0.4);
+  }
+  .shadow__2 {
+    -webkit-box-shadow: 0 0 13.5px 3px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 0 13.5px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 13.5px 3px rgba(0, 0, 0, 0.1);
   }
 }
