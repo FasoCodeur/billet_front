@@ -1,12 +1,9 @@
-"use client";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import {useState} from "react";
-import {usePathname} from "next/navigation";
-import {card, cardVariants} from "@/aminations";
+'use client'
+import React, {useState} from 'react';
 import {sideMenu} from "@/utils/utils";
-// import {useRouter} from "next/router";
-
+import Link from "next/link";
+import {usePathname} from "next/navigation";
+import {ExitIcon} from "@/app/fonts/icons";
 
 const SideMenu = () => {
     // const dispatch = useDispatch();
@@ -14,29 +11,26 @@ const SideMenu = () => {
     const path = usePathname();
     const [open, setOpen] = useState(false);
     return (
+
         <div className="mb-48 lg:mb-0 z-50 overflow-hidden shrink-0">
             {/* for destop */}
-            <div className="h-screen hidden lg:flex flex-col overflow-hidden w-[50px] lg:w-[300px] bg-white">
+            <div className="h-screen hidden lg:flex flex-col overflow-hidden w-[300px] lg:w-[300px]">
                 {/* logo */}
                 <Link
                     href={"/dashboard"}
-                    className="pb-16 mt-5 flex justify-center items-center"
+                    className="pb-7 mt-5 flex justify-center items-center"
                     title="Logo"
                 >
-                    BYBUS
+                    <h1 className="text-secondary text-3xl font-bold">BYBUS</h1>
                     {/*<LogoIcon className=""/>*/}
                 </Link>
                 {/* links */}
                 <div className="h-full flex-1  pb-2 flex flex-col gap-8 overflow-y-auto">
                     {/* link items */}
-                    <motion.ul
-                        variants={cardVariants}
-                        initial="hidden"
-                        animate="show"
-                        className="text-sm flex-1"
+                    <ul
                     >
                         {sideMenu.map((item, index) => (
-                            <motion.div variants={card} key={index}>
+                            <div key={index}>
                                 <Link
                                     href={item.path}
                                     className={`flex items-center gap-5 px-3 lg:pl-5 border-y hover:bg-bgColor duration-400 font-semibold  border-[#b3b2b2]/60 rounded-b-md py-4  ${
@@ -55,9 +49,9 @@ const SideMenu = () => {
                                     />
                                     <span className="hidden lg:block">{item.name}</span>
                                 </Link>
-                            </motion.div>
+                            </div>
                         ))}
-                    </motion.ul>
+                    </ul>
                     {/* logout btn */}
                     <button
                         // onClick={handleLogout}
@@ -99,16 +93,11 @@ const SideMenu = () => {
                     } duration-500 transition-all`}
                 >
                     {/* link items */}
-                    <motion.ul
-                        variants={cardVariants}
-                        initial="hidden"
-                        whileInView="show"
-                        exit={"hidden"}
+                    <ul
                         className="text-sm"
                     >
                         {sideMenu.map((item, index) => (
-                            <motion.div
-                                variants={card}
+                            <div
                                 key={index}
                                 onClick={() => setOpen((prev) => !prev)}
                                 className="mb-[1px]"
@@ -130,21 +119,22 @@ const SideMenu = () => {
                                     />
                                     <span>{item.name}</span>
                                 </Link>
-                            </motion.div>
+                            </div>
                         ))}
-                    </motion.ul>
+                    </ul>
                     {/* logout btn */}
                     <button
                         // onClick={handleLogout}
                         // disabled={isLoading}
                         className="py-4 shrink-0 flex bg-bgColor font-semibold items-center gap-5 px-3 rounded-tr-xl rounded-br-xl mobile__menu__shadow__links "
                     >
-                        {/*<ExitIcon className="text-2xl text-primary"/>{" "}*/}
+                        <ExitIcon className="text-2xl text-primary"/>{" "}
                         <span className="">Déconnexion</span>
                     </button>
                 </div>
             </div>
         </div>
+
     );
 };
 

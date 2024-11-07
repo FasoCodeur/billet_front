@@ -9,8 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        bgColor: "#edf3f8",
+        addcardbgColor: "#e6f6eb",
+        primary: "#339d89", //vert
+        secondary: "#ff880c", //orange
+        secondarylith: "rgba(243,209,175,0.22)", //orange
+        grayColor: "#d7dade", //gray
+        titleGrayColor: "#b8b8b8", //for title
+        softwhite: "#8F8F8F", //gray 8F8F8F
       },
     },
   },

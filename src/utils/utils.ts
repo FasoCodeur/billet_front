@@ -13,16 +13,14 @@ import { IoSettingsOutline } from "react-icons/io5";
 
 export const sideMenu = [
     { icon: MdDashboard, name: "Tableau de bord", path: "/dashboard" },
-    { icon: IoMdBusiness, name: "Compagnie", path: "/company" },
-    { icon: GiInterstellarPath, name: "Traject", path: "/traject" },
-    { icon: RiReservedLine, name: "Reservation", path: "/reservation" },
+    { icon: IoMdBusiness, name: "Compagnies", path: "/company" },
+    { icon: GiInterstellarPath, name: "Trajects", path: "/traject" },
+    { icon: RiReservedLine, name: "Reservations", path: "/reservation" },
     { icon: FaBusSimple, name: "Bus", path: "/bus" },
-    { icon: SiGooglecloudcomposer, name: "Equipement", path: "/equipment" },
-    { icon: CiMoneyBill, name: "Payement", path: "/payment" },
+    { icon: SiGooglecloudcomposer, name: "Equipements", path: "/equipment" },
+    { icon: CiMoneyBill, name: "Payements", path: "/payment" },
     { icon: MdOutlineAirlineSeatReclineExtra, name: "Siege", path: "/seat" },
-    { icon: FaUsers, name: "Utilisateur", path: "/user" },
+    { icon: FaUsers, name: "Utilisateurs", path: "/user" },
     { icon: PiWaveSquareDuotone, name: "Offres & Promo", path: "/promo" },
     { icon: IoSettingsOutline, name: "Paramètres", path: "/parametre" },
-
-
 ];

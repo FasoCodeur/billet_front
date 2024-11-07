@@ -1,11 +1,11 @@
-import SideMenu from "../../compoments/SideMenu";
+import SideMenu from "../../components/SideMenu";
 
 const BackOfficeLayout = ({children}) => {
     return (
         <div className="w-full h-full">
             <div className="h-full w-full lg:h-screen flex flex-col lg:flex-row">
             <SideMenu />
-            <main className="w-full flex flex-col">{children}</main>
+            <main className="w-full flex-grow flex flex-col">{children}</main>
         </div>
         </div>
     );
