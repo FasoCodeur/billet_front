@@ -58,7 +58,7 @@ const SideMenu = () => {
                         // disabled={isLoading}
                         className="py-4 shrink-0 flex font-semibold items-center gap-5 px-3  lg:pl-5 group disabled:cursor-not-allowed"
                     >
-                        {/*<ExitIcon className="text-2xl text-primary group-hover:text-secondary"/>{" "}*/}
+                        <ExitIcon className="text-2xl text-primary group-hover:text-secondary"/>{" "}
                         <span className="hidden lg:flex group-hover:text-secondary">
               Déconnexion
             </span>
