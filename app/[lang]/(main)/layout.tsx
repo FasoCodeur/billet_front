@@ -8,7 +8,7 @@ import React  from 'react';
 import { getDictionary } from "@/get-dictionary";
 import { Locale } from "@/i18n-config";
 import { Metadata } from "next";
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 
 interface DashboardLayoutProps {
   children?: React.ReactNode;

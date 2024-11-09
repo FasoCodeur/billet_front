@@ -29,6 +29,6 @@ module.exports = {
   "rules": {
     "react/prop-types": "off"
     // suppress errors for missing 'import React' in files
-    "react/react-in-jsx-scope": "off",
+    // "react/react-in-jsx-scope": "off",
   }
 };

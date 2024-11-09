@@ -8,12 +8,13 @@ export const metadata = {
 };
 
 export default async function Dashboard({
-  params: { lang, domain },
+  params: { lang },
 }: Readonly<{
-  params: { lang: Locale; domain: string };
+  params: { lang: Locale };
 }>) {
+  console.log(lang)
   const dictionary = await getDictionary(lang);
-  metadata.title = `DemandAMP+ | ${domain.split(".")[0]?.toUpperCase()} - ${
+  metadata.title = `DemandAMP+ | ${
     dictionary.DashBoard.Head
   }`;
 
