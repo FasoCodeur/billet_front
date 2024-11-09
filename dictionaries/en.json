@@ -59,6 +59,19 @@
     "HeadText": "Recent updates and notifications.",
     "PleaseWait": "Please Wait"
   },
+  "Users": {
+    "NavabarHeader": {
+      "Home": "Home",
+      "About": "About",
+      "Services": "Services",
+      "Pricing": "Pricing",
+      "Contact": "Contact",
+      "Settings": "Settings",
+      "Profile": "Profile",
+      "Documentation": "Documentation",
+      "Support": "Support"
+    }
+  },
   "Footer": {
     "AllRightsReserved": "All rights reserved",
     "AIMessage": "Hi, I'm AI. I am here to help and provide information to the best of my ability.",

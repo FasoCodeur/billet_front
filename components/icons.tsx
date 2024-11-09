@@ -55,7 +55,7 @@ import {
   Workflow,
 } from "lucide-react";
 
-export type Icon = LucideIcon;
+export type Icon = typeof LucideIcon;
 
 export const Icons: any = {
   UploadCloud: UploadCloud,

@@ -27,7 +27,7 @@ export async function middleware(request: NextRequest) {
             "/android-chrome-192x192.png",
             "/android-chrome-512x512.png",
             "/site.webmanifest",
-            "/MuutaaHeaderLogo.svg",
+            "/BybusHeaderLogo.svg",
             "/opengraph-image.png",
             "/favicon-32x32.png",
             "/favicon-16x16.png",

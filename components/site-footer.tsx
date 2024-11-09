@@ -4,6 +4,7 @@ import { Icons } from "@/components/icons";
 import { ModeToggle } from "@/components/mode-toggle";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
+import { DropdownMenuCheckboxesLocalSwitch } from "@components/localswitchDropdown"
 
 
 interface SiteFooterProps extends React.HTMLAttributes<HTMLElement> {
@@ -11,6 +12,7 @@ interface SiteFooterProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 export function SiteFooter({
+                             lang,
   className,
   translation,
 }: SiteFooterProps) {
@@ -37,7 +39,10 @@ export function SiteFooter({
           <ModeToggle />
         </div>
         <div className={""}>
-          <div className="block">{"                  "}</div>
+          <DropdownMenuCheckboxesLocalSwitch
+            lang={lang}
+            translation={translation}
+          />
         </div>
       </div>
     </footer>

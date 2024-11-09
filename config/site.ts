@@ -1,7 +1,6 @@
-import { SiteConfig } from "types";
+import { SiteConfig } from "@/types"
 
 export const siteConfig: SiteConfig = {
-
   name: "ByBus",
   description:
     "La solution la plus adaptée pour vos réservations des billets de bus en ligne sans vous déplacer .",
@@ -11,16 +10,17 @@ export const siteConfig: SiteConfig = {
     twitter: "https://twitter.com/shadcn",
     github: "https://github.com/shadcn/taxonomy",
     website: "https://billet-front.vercel.app/",
-  },    image: "/bybus+.png",
+  },
+  image: "/bybus+.png",
   logo: "/bybus+.png",
   icons: {
-  icon: "/favicon-32x32.png",
+    icon: "/favicon-32x32.png",
     shortcut: "/favicon.ico",
     apple: "/apple-icon.png",
     other: {
-    rel: "apple-touch-icon-precomposed",
+      rel: "apple-touch-icon-precomposed",
       url: "/apple-touch-icon.png",
+    },
   },
-},
   manifest: "/site.webmanifest",
-};
+}
