@@ -1,34 +1,34 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { Inter as FontSans } from "next/font/google";
-import "@/styles/main.css";
-import { ThemeProvider } from "@/components/ui/theme-provider";
-import { Toaster } from "@/components/ui/toaster";
-import { cn } from "@/lib/utils";
+// import type { Metadata } from "next";
+import localFont from "next/font/local"
+import { Inter as FontSans } from "next/font/google"
+import "@/styles/main.css"
+import { ThemeProvider } from "@/components/ui/theme-provider"
+import { Toaster } from "@/components/ui/toaster"
+import { cn } from "@/lib/utils"
 import { Locale } from "@/i18n-config"
 
-const geistSans = localFont({
-  src: "../../assets/fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "../../assets/fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+// const geistSans = localFont({
+//   src: "../../assets/fonts/GeistVF.woff",
+//   variable: "--font-geist-sans",
+//   weight: "100 900",
+// });
+// const geistMono = localFont({
+//   src: "../../assets/fonts/GeistMonoVF.woff",
+//   variable: "--font-geist-mono",
+//   weight: "100 900",
+// });
 
 
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
-});
+})
 
 // Font files can be colocated inside of `pages`
 const fontHeading = localFont({
   src: "../../assets/fonts/CalSans-SemiBold.woff2",
   variable: "--font-heading",
-});
+})
 
 
 interface RootLayoutProps {
@@ -41,7 +41,6 @@ export async function generateMetadata({
                                        }: {
   params: Promise<{ lang: Locale }>;
 }) {
-  const { lang } = await params;
   const {
     name: title,
     description,
@@ -50,49 +49,24 @@ export async function generateMetadata({
     icons,
     manifest,
   } =
-      // data?.id
-      // ? ({
-      //   name: `ByBus`,
-      //   description:
-      //       "La solution la plus adaptée pour vos réservations des billets de bus en ligne sans vous déplacer .",
-      //   image: "/bybus+.png",
-      //   logo: "/bybus+.png",
-      //   icons: {
-      //     icon: "/favicon-32x32.png",
-      //     shortcut: "/favicon.ico",
-      //     apple: "/apple-icon.png",
-      //     other: {
-      //       rel: "apple-touch-icon-precomposed",
-      //       url: "/apple-touch-icon.png",
-      //     },
-      //   },
-      //   manifest: "/site.webmanifest",
-      // } as {
-      //   name: string;
-      //   description: string;
-      //   image: string;
-      //   logo: string;
-      //   icons: any;
-      //   manifest: any;
-      // })
-      // :
-  {
-        name: "ByBus",
-        description:
-            "La solution la plus adaptée pour vos réservations des billets de bus en ligne sans vous déplacer .",
-        image: "/bybus+.png",
-        logo: "/bybus+.png",
-        icons: {
-          icon: "/favicon-32x32.png",
-          shortcut: "/favicon.ico",
-          apple: "/apple-icon.png",
-          other: {
-            rel: "apple-touch-icon-precomposed",
-            url: "/apple-touch-icon.png",
-          },
+
+    {
+      name: "ByBus",
+      description:
+        "La solution la plus adaptée pour vos réservations des billets de bus en ligne sans vous déplacer .",
+      image: "/bybus+.png",
+      logo: "/bybus+.png",
+      icons: {
+        icon: "/favicon-32x32.png",
+        shortcut: "/favicon.ico",
+        apple: "/apple-icon.png",
+        other: {
+          rel: "apple-touch-icon-precomposed",
+          url: "/apple-touch-icon.png",
         },
-        manifest: "/site.webmanifest",
-      };
+      },
+      manifest: "/site.webmanifest",
+    }
   return {
     title,
     description,
@@ -113,14 +87,14 @@ export async function generateMetadata({
     // metadataBase: domain.includes("localhost")
     //     ? new URL(`http://${domain.replace("%3A", ":")}`)
     //     : new URL(`https://${domain.replace("%3A", ":")}`),
-  };
+  }
 }
 
 export default async function RootLayout({
                                            children,
                                            params,
                                          }: Readonly<RootLayoutProps>) {
-  const { lang } = await params;
+  const { lang } = await params
 
   return (
     <html className={"h-full"} lang={lang} id={lang} suppressHydrationWarning>
@@ -138,5 +112,5 @@ export default async function RootLayout({
     </ThemeProvider>
     </body>
     </html>
-  );
+  )
 }

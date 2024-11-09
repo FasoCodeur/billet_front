@@ -1,7 +1,7 @@
 import React  from 'react';
 // import { MainNav } from "@/components/main-nav";
 // import SearchButton from "@/components/Search/searchButton";
-// import { SiteFooter } from "@/components/site-footer";
+import { SiteFooter } from "@/components/site-footer";
 // import { SiteFooterChatAI } from "@/components/ui/site-fouter-ai";
 // import UserAccountNav from "@/components/user-account-nav";
 // import { ConfigDashboard, dashboardConfig2 } from "@/config/dashboard";
@@ -24,7 +24,7 @@ export type UserNav = {
 };
 
 export const metadata: Metadata = {
-  title: "ByBus",
+  title: "ByBus | reservez votre billet en toute simplicité",
   description: "Réservez votre billet de bus dans la plus grande facilité. ByBus, c'est la solution pour vos déplacements en bus.",
 };
 
@@ -69,13 +69,11 @@ export default async function DashboardLayout({
       </header>
 
       {children}
-      {/*<SiteFooter*/}
-      {/*  domain={domain.replace("%3A", ":")}*/}
-      {/*  activeModules={activeModules}*/}
-      {/*  translation={dictionary.Footer}*/}
-      {/*  className="border-t"*/}
-      {/*  lang={lang}*/}
-      {/*/>*/}
+      <SiteFooter
+        translation={dictionary.Footer}
+        className="border-t"
+        lang={lang}
+      />
     </div>
   );
 }
