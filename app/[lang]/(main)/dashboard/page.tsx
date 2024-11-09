@@ -4,17 +4,17 @@ import { getDictionary } from "@/get-dictionary";
 import { Locale } from "@/i18n-config";
 
 export const metadata = {
-  title: "DemandAMP+",
+  title: "ByBus",
 };
 
 export default async function Dashboard({
-  params: { lang },
+  params,
 }: Readonly<{
-  params: { lang: Locale };
+  params: any
 }>) {
-  console.log(lang)
+  const {lang } = await params
   const dictionary = await getDictionary(lang);
-  metadata.title = `DemandAMP+ | ${
+  metadata.title = `ByBus | ${
     dictionary.DashBoard.Head
   }`;
 

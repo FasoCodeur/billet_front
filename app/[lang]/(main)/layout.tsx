@@ -12,7 +12,7 @@ import { Metadata } from "next";
 
 interface DashboardLayoutProps {
   children?: React.ReactNode;
-  params: { lang: Locale };
+  params: Promise<{ lang: Locale }>;
 }
 
 
@@ -32,9 +32,8 @@ export default async function DashboardLayout({
   children,
   params,
 }: Readonly<DashboardLayoutProps>) {
-  const { lang } = params;
+  const { lang } =  await params;
   const dictionary = await getDictionary(lang);
-
 
   return (
     <div className="flex min-h-screen flex-col space-y-6">

@@ -4,7 +4,7 @@
   },
   "mdx": {
     "title": "What's New in ByBus",
-    "description": "Stay up-to-date with the latest features and improvements in DemandAmp+.",
+    "description": "Stay up-to-date with the latest features and improvements in ByBus.",
     "version": "Version 2.0 (October 2024)",
     "newFeatures": {
       "title": "New Features",
@@ -23,7 +23,7 @@
       "title": "Enhancements",
       "list": [
         {
-          "description": "We've optimized the performance of DemandAmp+ to ensure faster load times..."
+          "description": "We've optimized the performance of ByBus to ensure faster load times..."
         },
         {
           "description": "Enjoy a more intuitive and streamlined user interface with updated navigation menus..."
@@ -43,7 +43,7 @@
     "Login": "Login",
     "LoginDesc": "Login to your account",
     "Register": "Register",
-    "RegisterDesc": "Create an account to get started in demandAMP+.",
+    "RegisterDesc": "Create an account to get started in ByBus.",
     "WelcomeBack": "Welcome back",
     "LoginMessage": "Enter your email to sign in to your account",
     "LoginMessage2": "if the login form is not loaded, please check your network",

@@ -5,6 +5,7 @@ import "@/styles/main.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
+import { Locale } from "@/i18n-config"
 
 const geistSans = localFont({
   src: "../../assets/fonts/GeistVF.woff",
@@ -32,15 +33,15 @@ const fontHeading = localFont({
 
 interface RootLayoutProps {
   children: React.ReactNode;
-  params: { lang: string };
+  params: Promise<{ lang: Locale }>;
 }
 
 export async function generateMetadata({
                                          params,
                                        }: {
-  params: { lang: string };
+  params: Promise<{ lang: Locale }>;
 }) {
-  const { lang } = params;
+  const { lang } = await params;
   const {
     name: title,
     description,
@@ -115,26 +116,27 @@ export async function generateMetadata({
   };
 }
 
-export default function RootLayout({
-  children,
-    params,
-}: Readonly<RootLayoutProps>) {
-  const { lang } = params;
+export default async function RootLayout({
+                                           children,
+                                           params,
+                                         }: Readonly<RootLayoutProps>) {
+  const { lang } = await params;
+
   return (
-      <html className={"h-full"} lang={lang} id={lang} suppressHydrationWarning>
-      <body
-          className={cn(
-              "min-h-screen bg-background font-sans antialiased",
-              fontSans.variable,
-              fontHeading.variable,
-          )}
-        // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        {children}
-        <Toaster />
-      </ThemeProvider>
-      </body>
+    <html className={"h-full"} lang={lang} id={lang} suppressHydrationWarning>
+    <body
+      className={cn(
+        "min-h-screen bg-background font-sans antialiased",
+        fontSans.variable,
+        fontHeading.variable,
+      )}
+      // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+    >
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      {children}
+      <Toaster />
+    </ThemeProvider>
+    </body>
     </html>
   );
 }

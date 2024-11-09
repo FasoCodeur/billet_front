@@ -10,14 +10,12 @@ function getLocale(request: NextRequest): string | undefined {
     // @ts-ignore locales are readonly
     const locales: string[] = i18n.locales;
     // Use negotiator and intl-localematcher to get best locale
-    let languages = new Negotiator({ headers: negotiatorHeaders }).languages(
+    const languages = new Negotiator({ headers: negotiatorHeaders }).languages(
         locales,
     );
     const locale = matchLocale(languages, locales, i18n.defaultLocale);
     return locale;
 }
-
-const PUBLIC_FILE = /\.(.*)$/
 
 export async function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
@@ -33,7 +31,7 @@ export async function middleware(request: NextRequest) {
             "/opengraph-image.png",
             "/favicon-32x32.png",
             "/favicon-16x16.png",
-            "/DemandAmpHeaderLogo.svg",
+            "/bybusHeaderLogo.svg",
             "/apple-touch-icon.png",
             "/apple-icon.png",
             "/bybus_logo.png",
@@ -68,6 +66,6 @@ export async function middleware(request: NextRequest) {
 export const config = {
     // Matcher ignoring `/_next/` and `/api/`
     matcher: [
-        "/((?!api|_next/static|_next/image|favicon.ico|favicon-16x16.png|demandamp_logo.webp|demandamp_logo.png|demandamp_logo_dark.png).*)",
+        "/((?!api|_next/static|_next/image|favicon.ico|favicon-16x16.png|logo.webp|logo.png|logo_dark.png).*)",
     ],
 };
