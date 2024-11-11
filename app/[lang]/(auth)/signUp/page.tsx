@@ -8,7 +8,6 @@ export default async function SignUp({
                                      }: Readonly<{
   params: Promise<{ lang: Locale }>
 }>) {
-
   const { lang } = await params
   return <Login mode="signup" lang={lang} />
 }
