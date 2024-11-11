@@ -3,12 +3,12 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from "@/components/ui/tooltip"
 
 interface DashboardHeaderProps {
-  heading: string;
-  text?: string;
-  children?: React.ReactNode;
+  heading: string
+  text?: string
+  children?: React.ReactNode
 }
 
 export function DashboardHeader({
@@ -32,12 +32,12 @@ export function DashboardHeader({
           </Tooltip>
         </TooltipProvider>
         {text && (
-          <p className="text-muted-foreground block w-fit max-w-[600px] truncate px-2  text-lg ">
+          <p className="block w-fit max-w-[600px] truncate px-2 text-lg text-muted-foreground">
             {text}
           </p>
         )}
       </div>
       {children}
     </div>
-  );
+  )
 }

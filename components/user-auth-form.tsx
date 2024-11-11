@@ -1,99 +1,101 @@
-"use client";
+"use client"
 
-import { cn } from "@/lib/utils";
-import { userAuthSchema } from "@/lib/validations/auth";
+import { cn } from "@/lib/utils"
+import { userAuthSchema } from "@/lib/validations/auth"
 // import { zodResolver } from "@hookform/resolvers/zod";
-import { handleFlowError, handleGetFlowError } from "@/pkg/errors";
-import ory from "@/pkg/sdk";
-import { Flow } from "@/pkg/ui";
-import { LoginFlow, UpdateLoginFlowBody } from "@ory/client";
-import { AxiosError } from "axios";
-import { useRouter, useSearchParams } from "next/navigation";
-import * as React from "react";
-import { useEffect, useState } from "react";
-import * as z from "zod";
+// import { handleFlowError, handleGetFlowError } from "@/pkg/errors"
+// import ory from "@/pkg/sdk"
+// import { Flow } from "@/pkg/ui"
+// import { LoginFlow, UpdateLoginFlowBody } from "@ory/client"
+import { AxiosError } from "axios"
+import { useRouter, useSearchParams } from "next/navigation"
+import * as React from "react"
+import { useEffect, useState } from "react"
+import * as z from "zod"
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
 
-type FormData = z.infer<typeof userAuthSchema>;
+type FormData = z.infer<typeof userAuthSchema>
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
-  const [flow, setFlow] = useState<LoginFlow | null | undefined>(null);
-  const router = useRouter();
+  const [flow, setFlow] = useState<
+    // LoginFlow
+    | null | undefined>(null)
+  const router = useRouter()
 
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParams()
 
-  const returnTo = String(searchParams?.get("return_to") || "");
-  const flowId = String(searchParams?.get("flow") || "");
-  const refresh = Boolean(searchParams?.get("refresh"));
-  const aal = String(searchParams?.get("aal") || "");
+  const returnTo = String(searchParams?.get("return_to") || "")
+  const flowId = String(searchParams?.get("flow") || "")
+  const refresh = Boolean(searchParams?.get("refresh"))
+  const aal = String(searchParams?.get("aal") || "")
 
-  useEffect(() => {
-    // If the router is not ready yet, or we already have a flow, do nothing.
-    if (!router || flow) {
-      return;
-    }
+  // useEffect(() => {
+  //   // If the router is not ready yet, or we already have a flow, do nothing.
+  //   if (!router || flow) {
+  //     return
+  //   }
+  //
+  //   // If ?flow=.. was in the URL, we fetch it
+  //   if (flowId) {
+  //     ory
+  //       .getLoginFlow({ id: String(flowId) })
+  //       .then(({ data }) => {
+  //         setFlow(data)
+  //       })
+  //       // .catch((e: any) => {
+  //       //   console.log(e);
+  //       // });
+  //       .catch(handleGetFlowError(router, "login", setFlow))
+  //     return
+  //   }
+  //
+  //   // Otherwise we initialize it
+  //   ory
+  //     .createBrowserLoginFlow({
+  //       refresh: true,
+  //       aal: aal ? String(aal) : undefined,
+  //       returnTo: returnTo ? String(returnTo) : undefined,
+  //     })
+  //     .then(({ data }) => {
+  //       setFlow(data)
+  //     })
+  //     .catch(handleFlowError(router, "login", setFlow))
+  // }, [flowId, router, aal, refresh, returnTo, flow])
 
-    // If ?flow=.. was in the URL, we fetch it
-    if (flowId) {
-      ory
-        .getLoginFlow({ id: String(flowId) })
-        .then(({ data }) => {
-          setFlow(data);
-        })
-        // .catch((e: any) => {
-        //   console.log(e);
-        // });
-        .catch(handleGetFlowError(router, "login", setFlow));
-      return;
-    }
-
-    // Otherwise we initialize it
-    ory
-      .createBrowserLoginFlow({
-        refresh: true,
-        aal: aal ? String(aal) : undefined,
-        returnTo: returnTo ? String(returnTo) : undefined,
-      })
-      .then(({ data }) => {
-        setFlow(data);
-      })
-      .catch(handleFlowError(router, "login", setFlow));
-  }, [flowId, router, aal, refresh, returnTo, flow]);
-
-  const onSubmit = async (values: UpdateLoginFlowBody): Promise<void> => {
-    router
-      // On submission, add the flow ID to the URL but do not navigate. This prevents the user loosing
-      // his data when she/he reloads the page.
-      .push(`/login?flow=${flow?.id}`);
-    await ory
-      .updateLoginFlow({
-        flow: String(flow?.id),
-        updateLoginFlowBody: values,
-      })
-      // We logged in successfully! Let's bring the user home.
-      .then(() => {
-        console.log("login success");
-        if (flow?.return_to) {
-          window.location.href = flow?.return_to;
-          return;
-        }
-        router.push("/dashboard");
-      })
-      .then(() => {})
-      // .catch(handleFlowError(router, "login", setFlow))
-      .catch(handleFlowError(router, "login", setFlow))
-      .catch((err: AxiosError) => {
-        // If the previous handler did not catch the error it's most likely a form validation error
-        if (err.response?.status === 400) {
-          // Yup, it is!
-          setFlow(err.response?.data as any);
-          return;
-        }
-
-        return Promise.reject(err);
-      });
-  };
+  // const onSubmit = async (values: UpdateLoginFlowBody): Promise<void> => {
+  //   router
+  //     // On submission, add the flow ID to the URL but do not navigate. This prevents the user loosing
+  //     // his data when she/he reloads the page.
+  //     .push(`/login?flow=${flow?.id}`)
+  //   await ory
+  //     .updateLoginFlow({
+  //       flow: String(flow?.id),
+  //       updateLoginFlowBody: values,
+  //     })
+  //     // We logged in successfully! Let's bring the user home.
+  //     .then(() => {
+  //       console.log("login success")
+  //       if (flow?.return_to) {
+  //         window.location.href = flow?.return_to
+  //         return
+  //       }
+  //       router.push("/dashboard")
+  //     })
+  //     .then(() => {})
+  //     // .catch(handleFlowError(router, "login", setFlow))
+  //     .catch(handleFlowError(router, "login", setFlow))
+  //     .catch((err: AxiosError) => {
+  //       // If the previous handler did not catch the error it's most likely a form validation error
+  //       if (err.response?.status === 400) {
+  //         // Yup, it is!
+  //         setFlow(err.response?.data as any)
+  //         return
+  //       }
+  //
+  //       return Promise.reject(err)
+  //     })
+  // }
 
   // const {
   //   register,
@@ -156,7 +158,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
   return (
     <div className={cn("grid gap-6", className)} {...props}>
-      <Flow onSubmit={onSubmit} flow={flow!} />
+      <h1>SIGN in FORM</h1>
+      {/*<Flow onSubmit={onSubmit} flow={flow!} />*/}
 
       {/*<form onSubmit={handleSubmit(onSubmit)}>*/}
       {/*  <div className="grid gap-2">*/}
@@ -215,5 +218,5 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       {/*  Github*/}
       {/*</button>*/}
     </div>
-  );
+  )
 }

@@ -1,28 +1,28 @@
-import { Skeleton } from "@/components/ui/skeleton";
-import { useLockBody } from "@/hooks/use-lock-body";
-import { cn } from "@/lib/utils";
-import { useTheme } from "next-themes";
-import Image from "next/image";
-import Link from "next/link";
-import * as React from "react";
-import { useEffect, useState } from "react";
-import { MainNavItem } from "@/types";
+import { Skeleton } from "@/components/ui/skeleton"
+import { useLockBody } from "@/hooks/use-lock-body"
+import { cn } from "@/lib/utils"
+import { useTheme } from "next-themes"
+import Image from "next/image"
+import Link from "next/link"
+import * as React from "react"
+import { useEffect, useState } from "react"
+import { MainNavItem } from "@/types"
 
 interface MobileNavProps {
-  items: MainNavItem[];
-  children?: React.ReactNode;
-  lang: string;
+  items: MainNavItem[]
+  children?: React.ReactNode
+  lang: string
 }
 
 export function MobileNav({ items, children, lang }: MobileNavProps) {
-  useLockBody();
-  const [mounted, setMounted] = useState(false);
-  const { theme, systemTheme, resolvedTheme } = useTheme();
+  useLockBody()
+  const [mounted, setMounted] = useState(false)
+  const { theme, systemTheme, resolvedTheme } = useTheme()
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    setMounted(true)
+  }, [])
 
-  console.log("theme system", systemTheme);
+  console.log("theme system", systemTheme)
 
   return (
     <div
@@ -73,5 +73,5 @@ export function MobileNav({ items, children, lang }: MobileNavProps) {
         {children}
       </div>
     </div>
-  );
+  )
 }

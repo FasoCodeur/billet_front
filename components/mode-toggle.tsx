@@ -1,18 +1,18 @@
-"use client";
+"use client"
 
-import { Icons } from "@/components/icons";
-import { Button } from "@/components/ui/button";
+import { Icons } from "@/components/icons"
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useTheme } from "next-themes";
-import * as React from "react";
+} from "@/components/ui/dropdown-menu"
+import { useTheme } from "next-themes"
+import * as React from "react"
 
 export function ModeToggle() {
-  const { setTheme } = useTheme();
+  const { setTheme } = useTheme()
 
   return (
     <DropdownMenu>
@@ -38,5 +38,5 @@ export function ModeToggle() {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

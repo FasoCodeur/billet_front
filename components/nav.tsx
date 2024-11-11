@@ -1,43 +1,42 @@
-"use client";
+"use client"
 
-import { Icons } from "@/components/icons";
+import { Icons } from "@/components/icons"
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { getCurrentUserRoles } from "@/lib/session";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { SidebarNavItem } from "types";
-import { any } from "zod";
+} from "@/components/ui/tooltip"
+import { getCurrentUserRoles } from "@/lib/session"
+import { cn } from "@/lib/utils"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { useEffect, useState } from "react"
+import { SidebarNavItem } from "@/types"
 
 interface DashboardNavProps {
-  items: SidebarNavItem[];
-  [key: string]: any;
+  items: SidebarNavItem[]
+  [key: string]: any
 }
 
 export function DashboardNav({ items }: any) {
-  const path = usePathname();
-  const [roles, setRole] = useState();
+  const path = usePathname()
+  const [roles, setRole] = useState()
   useEffect(() => {
     getCurrentUserRoles()
       .then((user: any) => {
         if (user) {
-          setRole(user?.roles);
+          setRole(user?.roles)
         }
       })
-      .catch((e: any) => {
-        console.log(e.message);
-      });
-  }, []);
+      .catch((e: Error) => {
+        console.log(e.message)
+      })
+  }, [])
   if (!items?.length) {
-    return <></>;
+    return <></>
   }
-  const filteredData = items.filter((item) => {
+  const filteredData = items.filter((item: any) => {
     // If the user is defined, remove objects with titles "Groups" and "Users"
     if (roles === "user") {
       return (
@@ -45,16 +44,16 @@ export function DashboardNav({ items }: any) {
         item.title !== "Users" &&
         item.title !== "Groupes" &&
         item.title !== "Utilisateurs"
-      );
+      )
     }
     // Otherwise, keep all objects
-    return true;
-  });
+    return true
+  })
 
   return (
     <nav className="grid items-start gap-2">
       {filteredData.map((item: any, index: number) => {
-        const Icon = Icons[item.icon || "arrowRight"];
+        const Icon = Icons[item.icon || "arrowRight"]
         return (
           item.href && (
             <Link key={index} href={item.disabled ? "/" : item.href}>
@@ -82,8 +81,8 @@ export function DashboardNav({ items }: any) {
               </span>
             </Link>
           )
-        );
+        )
       })}
     </nav>
-  );
+  )
 }

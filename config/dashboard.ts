@@ -1,4 +1,4 @@
-import { DashboardConfig } from "@/types";
+import { DashboardConfig } from "@/types"
 
 export const dashboardConfig: DashboardConfig = {
   mainNav: [
@@ -31,7 +31,7 @@ export const dashboardConfig: DashboardConfig = {
       href: "/dashboard/about",
     },
     {
-      title:"Contact",
+      title: "Contact",
       href: "/dashboard/contact",
     },
   ],
@@ -52,4 +52,4 @@ export const dashboardConfig: DashboardConfig = {
     //     icon: "settings",
     // },
   ],
-};
+}

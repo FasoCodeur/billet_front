@@ -1,10 +1,14 @@
-import { cn } from "@/lib/utils";
-import React from "react";
+import { cn } from "@/lib/utils"
+import React from "react"
 
-const Loader = ({ size, color, className }: any) => {
-  const defaultSize = size || 8;
-  const defaultColor = color || "fill-blue-600";
-  const classez = `w-${defaultSize} h-${defaultSize} mr-2 animate-spin ${defaultColor} text-gray-200 dark:text-gray-600`;
+const Loader = ({ size, color, className }: {
+  size: number;
+  color: string;
+  className: string
+}) => {
+  const defaultSize = size || 8
+  const defaultColor = color || "fill-blue-600"
+  const classez = `w-${defaultSize} h-${defaultSize} mr-2 animate-spin ${defaultColor} text-gray-200 dark:text-gray-600`
   return (
     <div role="status" className={className}>
       <svg
@@ -25,7 +29,7 @@ const Loader = ({ size, color, className }: any) => {
       </svg>
       <span className="sr-only">Loading...</span>
     </div>
-  );
-};
+  )
+}
 
-export default Loader;
+export default Loader

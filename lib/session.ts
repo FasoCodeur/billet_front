@@ -48,7 +48,7 @@ export async function getCurrentUser() {
     // console.log(user)
     return user
   } catch (err: any) {
-    console.log(err.message)
+    console.log(err?.message)
     return null
   }
 }
@@ -66,12 +66,12 @@ export async function getCurrentUserRoles() {
               last: "Bybus",
             },
             role: "admin",
-            email: "admin@bybus.com"
+            email: "admin@bybus.com",
           },
         },
-      }
+      },
     }
-      // await ory.toSession()
+    // await ory.toSession()
     // console.log("sessionData")
     // console.log(sessionData)
 
@@ -96,7 +96,7 @@ export async function getCurrentUserRoles() {
         logout_url: "/logout",
       },
     }
-      // await ory.createBrowserLogoutFlow()
+    // await ory.createBrowserLogoutFlow()
 
     // console.log(logoutData.logout_url);
     user.logoutUrl = logoutData?.logout_url

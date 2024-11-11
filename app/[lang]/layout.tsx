@@ -18,7 +18,6 @@ import { Locale } from "@/i18n-config"
 //   weight: "100 900",
 // });
 
-
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -30,16 +29,15 @@ const fontHeading = localFont({
   variable: "--font-heading",
 })
 
-
 interface RootLayoutProps {
-  children: React.ReactNode;
-  params: Promise<{ lang: Locale }>;
+  children: React.ReactNode
+  params: Promise<{ lang: Locale }>
 }
 
 export async function generateMetadata({
-                                         params,
-                                       }: {
-  params: Promise<{ lang: Locale }>;
+  params,
+}: {
+  params: Promise<{ lang: Locale }>
 }) {
   const {
     name: title,
@@ -48,25 +46,23 @@ export async function generateMetadata({
     logo,
     icons,
     manifest,
-  } =
-
-    {
-      name: "ByBus",
-      description:
-        "La solution la plus adaptée pour vos réservations des billets de bus en ligne sans vous déplacer .",
-      image: "/bybus+.png",
-      logo: "/bybus+.png",
-      icons: {
-        icon: "/favicon-32x32.png",
-        shortcut: "/favicon.ico",
-        apple: "/apple-icon.png",
-        other: {
-          rel: "apple-touch-icon-precomposed",
-          url: "/apple-touch-icon.png",
-        },
+  } = {
+    name: "ByBus",
+    description:
+      "La solution la plus adaptée pour vos réservations des billets de bus en ligne sans vous déplacer .",
+    image: "/bybus+.png",
+    logo: "/bybus+.png",
+    icons: {
+      icon: "/favicon-32x32.png",
+      shortcut: "/favicon.ico",
+      apple: "/apple-icon.png",
+      other: {
+        rel: "apple-touch-icon-precomposed",
+        url: "/apple-touch-icon.png",
       },
-      manifest: "/site.webmanifest",
-    }
+    },
+    manifest: "/site.webmanifest",
+  }
   return {
     title,
     description,
@@ -91,26 +87,26 @@ export async function generateMetadata({
 }
 
 export default async function RootLayout({
-                                           children,
-                                           params,
-                                         }: Readonly<RootLayoutProps>) {
+  children,
+  params,
+}: Readonly<RootLayoutProps>) {
   const { lang } = await params
 
   return (
     <html className={"h-full"} lang={lang} id={lang} suppressHydrationWarning>
-    <body
-      className={cn(
-        "min-h-screen bg-background font-sans antialiased",
-        fontSans.variable,
-        fontHeading.variable,
-      )}
-      // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-    >
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      {children}
-      <Toaster />
-    </ThemeProvider>
-    </body>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable,
+          fontHeading.variable,
+        )}
+        // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+          <Toaster />
+        </ThemeProvider>
+      </body>
     </html>
   )
 }

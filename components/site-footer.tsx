@@ -1,22 +1,21 @@
-"use client";
-import * as React from "react";
-import { Icons } from "@/components/icons";
-import { ModeToggle } from "@/components/mode-toggle";
-import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
+"use client"
+import * as React from "react"
+import { Icons } from "@/components/icons"
+import { ModeToggle } from "@/components/mode-toggle"
+import { siteConfig } from "@/config/site"
+import { cn } from "@/lib/utils"
 import { DropdownMenuCheckboxesLocalSwitch } from "@components/localswitchDropdown"
-
+import { Locale } from "@/i18n-config"
 
 interface SiteFooterProps extends React.HTMLAttributes<HTMLElement> {
-  translation: any;
+  lang: Locale;
+  className: string;
+  translation: {
+    [key: string]: string | any
+  }
 }
 
-export function SiteFooter({
-                             lang,
-  className,
-  translation,
-}: SiteFooterProps) {
-
+export function SiteFooter({ lang, className, translation }: SiteFooterProps) {
   return (
     <footer className={cn(className)}>
       <div className="container flex flex-col items-center justify-between gap-4 py-10 md:h-24 md:flex-row md:py-0">
@@ -46,5 +45,5 @@ export function SiteFooter({
         </div>
       </div>
     </footer>
-  );
+  )
 }

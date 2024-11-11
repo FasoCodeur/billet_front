@@ -1,45 +1,50 @@
-"use client";
-import * as React from "react";
-import { Button } from "@/components/ui/button";
+"use client"
+import * as React from "react"
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { i18n } from "@/i18n-config";
-import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+} from "@/components/ui/dropdown-menu"
+import { i18n, Locale } from "@/i18n-config"
+import { usePathname, useRouter } from "next/navigation"
+import { useState } from "react"
 import {
-  AlertDialog, AlertDialogAction,
+  AlertDialog,
+  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription, AlertDialogFooter, AlertDialogHeader,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
   AlertDialogTitle,
 } from "@components/ui/alert-dialog"
 import { RadioGroup, RadioGroupItem } from "@components/ui/radio-group"
 import { Label } from "@components/ui/label"
 
 interface SelectLocalProps {
-  lang: string;
-  translation: any;
+  lang: Locale
+  translation: {
+    [key: string]: string
+  }
 }
 
 export function DropdownMenuCheckboxesLocalSwitch({
   lang,
   translation,
 }: Readonly<SelectLocalProps>) {
-  const pathName: any = usePathname();
-  const router = useRouter();
-  const [open, setOpen] = useState<boolean>(false);
-  const [savedLocal, setSavedLocal] = useState<string>("en");
+  const pathName: any = usePathname()
+  const router = useRouter()
+  const [open, setOpen] = useState<boolean>(false)
+  const [savedLocal, setSavedLocal] = useState<string>("en")
   const redirectedPathName = (locale: string) => {
-    if (!pathName) return "/";
-    const segments = pathName.split("/");
-    segments[1] = locale;
-    return segments.join("/");
-  };
+    if (!pathName) return "/"
+    const segments = pathName.split("/")
+    segments[1] = locale
+    return segments.join("/")
+  }
   return (
     <div>
       <DropdownMenu>
@@ -57,12 +62,12 @@ export function DropdownMenuCheckboxesLocalSwitch({
               return (
                 <div
                   onClick={() => {
-                    setSavedLocal(locale);
+                    setSavedLocal(locale)
                     if (pathName?.includes("addReport")) {
-                      locale !== lang && setOpen(true);
+                      locale !== lang && setOpen(true)
                     } else {
                       savedLocal !== lang &&
-                        router.push(redirectedPathName(locale));
+                        router.push(redirectedPathName(locale))
                     }
                   }}
                   className="flex w-full items-center space-x-2"
@@ -73,7 +78,7 @@ export function DropdownMenuCheckboxesLocalSwitch({
                     {locale === "en" ? "English" : "French"}
                   </Label>
                 </div>
-              );
+              )
             })}
           </RadioGroup>
         </DropdownMenuContent>
@@ -81,9 +86,7 @@ export function DropdownMenuCheckboxesLocalSwitch({
       <AlertDialog open={open} onOpenChange={setOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>
-              Change language
-            </AlertDialogTitle>
+            <AlertDialogTitle>Change language</AlertDialogTitle>
             <AlertDialogDescription>
               etes vous sur de vouloir changer de langue?
             </AlertDialogDescription>
@@ -95,8 +98,8 @@ export function DropdownMenuCheckboxesLocalSwitch({
             <AlertDialogAction
               onClick={() => {
                 savedLocal !== lang &&
-                  router.push(redirectedPathName(savedLocal));
-                setOpen(false);
+                  router.push(redirectedPathName(savedLocal))
+                setOpen(false)
               }}
             >
               Confirmer
@@ -105,5 +108,5 @@ export function DropdownMenuCheckboxesLocalSwitch({
         </AlertDialogContent>
       </AlertDialog>
     </div>
-  );
+  )
 }

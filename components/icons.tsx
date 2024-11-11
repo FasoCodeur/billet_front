@@ -53,9 +53,9 @@ import {
   X,
   type Icon as LucideIcon,
   Workflow,
-} from "lucide-react";
+} from "lucide-react"
 
-export type Icon = typeof LucideIcon;
+export type Icon = typeof LucideIcon
 
 export const Icons: any = {
   UploadCloud: UploadCloud,
@@ -201,4 +201,4 @@ export const Icons: any = {
       />
     </svg>
   ),
-};
+}

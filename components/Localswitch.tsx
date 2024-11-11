@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import {
   AlertDialog,
@@ -9,36 +9,38 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
+} from "@/components/ui/alert-dialog"
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectLabel,
   SelectTrigger,
-} from "@/components/ui/select";
-import { i18n } from "@/i18n-config";
-import { usePathname, useRouter } from "next/navigation";
-import * as React from "react";
-import { useState } from "react";
-import ReactCountryFlag from "react-country-flag";
+} from "@/components/ui/select"
+import { i18n, Locale } from "@/i18n-config"
+import { usePathname, useRouter } from "next/navigation"
+import * as React from "react"
+import { useState } from "react"
+import ReactCountryFlag from "react-country-flag"
 
 interface SelectLocalProps {
-  lang: string;
-  translation: any;
+  lang: Locale
+  translation: {
+    [key: string]: string;
+  }
 }
 
 export function SelectLocal({ lang, translation }: SelectLocalProps) {
-  const pathName: any = usePathname();
-  const router = useRouter();
-  const [open, setOpen] = useState<boolean>(false);
-  const [savedLocal, setSavedLocal] = useState<string>("en");
+  const pathName:string = usePathname()
+  const router = useRouter()
+  const [open, setOpen] = useState<boolean>(false)
+  const [savedLocal, setSavedLocal] = useState<Locale>("en")
   const redirectedPathName = (locale: string) => {
-    if (!pathName) return "/";
-    const segments = pathName.split("/");
-    segments[1] = locale;
-    return segments.join("/");
-  };
+    if (!pathName) return "/"
+    const segments = pathName.split("/")
+    segments[1] = locale
+    return segments.join("/")
+  }
 
   return (
     <div>
@@ -64,15 +66,15 @@ export function SelectLocal({ lang, translation }: SelectLocalProps) {
               return (
                 <div
                   onClick={() => {
-                    setSavedLocal(locale);
+                    setSavedLocal(locale)
                     if (
                       pathName?.includes("addReport") ||
                       pathName?.includes("addReport")
                     ) {
-                      locale !== lang && setOpen(!open);
+                      locale !== lang && setOpen(!open)
                     } else {
                       savedLocal !== lang &&
-                        router.push(redirectedPathName(locale));
+                        router.push(redirectedPathName(locale))
                     }
                   }}
                   className="hover:bg-slate-200"
@@ -94,7 +96,7 @@ export function SelectLocal({ lang, translation }: SelectLocalProps) {
                 // <li className="hover:bg-slate-200" key={locale}>
 
                 // </li>
-              );
+              )
             })}
             {/* {/* <SelectItem value="en">english</SelectItem> */}
           </SelectGroup>
@@ -115,8 +117,8 @@ export function SelectLocal({ lang, translation }: SelectLocalProps) {
             <AlertDialogAction
               onClick={() => {
                 savedLocal !== lang &&
-                  router.push(redirectedPathName(savedLocal));
-                setOpen(false);
+                  router.push(redirectedPathName(savedLocal))
+                setOpen(false)
               }}
             >
               {translation.Continue}
@@ -125,5 +127,5 @@ export function SelectLocal({ lang, translation }: SelectLocalProps) {
         </AlertDialogContent>
       </AlertDialog>
     </div>
-  );
+  )
 }
