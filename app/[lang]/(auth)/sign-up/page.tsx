@@ -1,6 +1,14 @@
 import React from "react"
 import { Login } from "../login"
+import { Locale } from "@/i18n-config"
 
-export default function SignUpPage() {
-  return <Login mode="signup" />
+
+export default async function SignUp({
+                                       params,
+                                     }: Readonly<{
+  params: Promise<{ lang: Locale }>
+}>) {
+
+  const { lang } = await params
+  return <Login mode="signup" lang={lang} />
 }
