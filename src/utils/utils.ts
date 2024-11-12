@@ -24,3 +24,26 @@ export const sideMenu = [
     { icon: PiWaveSquareDuotone, name: "Offres & Promo", path: "/promo" },
     { icon: IoSettingsOutline, name: "Paramètres", path: "/parametre" },
 ];
+export const people = [
+    { cin:'45789890776', name: 'Lindsay Walton', phone: '+2126051138',
+        email: 'lindsay.walton@example.com', active: true },
+    { cin:'45789890776', name: 'Lindsay Walton', phone: '+2126051138',
+        email: 'toure.walton@example.com', active: false },
+    { cin:'57894567', name: 'Lindsay Walton', phone: '+2126051138',
+        email: 'toure.aboubacar@example.com', active: true },
+    { cin:'34576675', name: 'Lindsay Walton', phone: '+2126051138',
+        email: 'toure.example.com', active: true },
+    { cin:'45789890776', name: 'Lindsay Walton', phone: '+2126051138',
+        email: 'KayeBatrans.walton@example.com', active: true },
+    { cin:'578934567', name: 'Lindsay Walton', phone: '+2126051138',
+        email: 'sekouToure.walton@example.com', active: true },
+    { cin:'36780765', name: 'Lindsay Walton', phone: '+2126051138',
+        email: 'gazel.walton@example.com', active: true },
+    { cin:'23456787645', name: 'Lindsay Walton', phone: '+2126051138',
+        email: 'cnm.walton@example.com', active: false },
+    { cin:'23456788765', name: 'Lindsay Walton', phone: '+2126051138',
+        email: 'Minparcor.walton@example.com', active: true },
+    {cin:'2345679765', name: 'Lindsay Walton', phone: '+2126051138',
+        email: 'estTrans.walton@example.com', active: true },
+
+]
