@@ -22,17 +22,17 @@ export function DashboardHeader({
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <h1 className="block w-fit flex-wrap truncate px-2 text-3xl font-bold md:max-w-[550px] lg:max-w-[750px]">
+              <h1 className="block w-fit flex-wrap px-2 text-3xl font-bold md:max-w-[550px] lg:max-w-[750px]">
                 {heading}
               </h1>
             </TooltipTrigger>
             <TooltipContent>
-              <span className="block w-full truncate">{heading}</span>
+              <span className="block w-full">{heading}</span>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
         {text && (
-          <p className="block w-fit max-w-[600px] truncate px-2 text-lg text-muted-foreground">
+          <p className="block w-fit max-w-[600px] px-2 text-lg text-muted-foreground">
             {text}
           </p>
         )}

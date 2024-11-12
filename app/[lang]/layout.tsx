@@ -94,19 +94,23 @@ export default async function RootLayout({
 
   return (
     <html className={"h-full"} lang={lang} id={lang} suppressHydrationWarning>
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable,
-          fontHeading.variable,
-        )}
-        // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-          <Toaster />
-        </ThemeProvider>
-      </body>
+    <head>
+      <link rel="manifest" href="/site.webmanifest"></link>
+      <title>ByBus</title>
+    </head>
+    <body
+      className={cn(
+        "min-h-screen bg-background font-sans antialiased",
+        fontSans.variable,
+        fontHeading.variable,
+      )}
+      // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+    >
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      {children}
+      <Toaster />
+    </ThemeProvider>
+    </body>
     </html>
   )
 }

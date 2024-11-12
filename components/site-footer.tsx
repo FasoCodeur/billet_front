@@ -38,10 +38,7 @@ export function SiteFooter({ lang, className, translation }: SiteFooterProps) {
           <ModeToggle />
         </div>
         <div className={""}>
-          <DropdownMenuCheckboxesLocalSwitch
-            lang={lang}
-            translation={translation}
-          />
+
         </div>
       </div>
     </footer>

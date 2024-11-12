@@ -49,7 +49,7 @@ function getItems(
   }
 
   if (node.type === "list") {
-    current.items = node.children.map((i) => getItems(i, {}))
+    current.items = node.children.map((i: any) => getItems(i, {}))
 
     return current
   } else if (node.type === "listItem") {

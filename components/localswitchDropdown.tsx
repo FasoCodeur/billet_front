@@ -86,7 +86,7 @@ export function DropdownMenuCheckboxesLocalSwitch({
       <AlertDialog open={open} onOpenChange={setOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Change language</AlertDialogTitle>
+            <AlertDialogTitle>Changer la language</AlertDialogTitle>
             <AlertDialogDescription>
               etes vous sur de vouloir changer de langue?
             </AlertDialogDescription>

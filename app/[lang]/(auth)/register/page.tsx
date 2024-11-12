@@ -3,7 +3,7 @@ import { Login } from "../login"
 import { Locale } from "@/i18n-config"
 
 
-export default async function SignUp({
+export default async function Register({
                                        params,
                                      }: Readonly<{
   params: Promise<{ lang: Locale }>

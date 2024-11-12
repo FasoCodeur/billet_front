@@ -8,11 +8,14 @@ import { SiteFooter } from "@/components/site-footer"
 import { getDictionary } from "@/get-dictionary"
 import { Locale } from "@/i18n-config"
 import { Metadata } from "next"
+import Image from 'next/image';
 import UserAccountNav from "@components/user-account-nav"
 import { MainNav } from "@components/main-nav"
 import { dashboardConfig } from "@/config/dashboard"
 import { Button } from "@components/ui/button"
 import Link from "next/link"
+import { DropdownMenuCheckboxesLocalSwitch } from "@components/localswitchDropdown"
+import { SelectLocal } from "@components/Localswitch"
 
 interface DashboardLayoutProps {
   children?: React.ReactNode
@@ -49,7 +52,9 @@ export default async function DashboardLayout({
             items={dashboardConfig.mainNav}
           />
           <div className="flex flex-row items-center justify-between space-x-4 md:space-x-2">
-            <Link href={"/reservations"}>
+            <Link
+              href={`/${lang}/reservations`}
+            >
               {/*  reservez maintemant */}
               <Button
                 typeof={"button"}
@@ -60,20 +65,34 @@ export default async function DashboardLayout({
               </Button>
             </Link>
             {/*sign in or sign up button */}
-            {isSigned ? (
-              <Link href={"/sign-in"}>
-                <Button typeof={"button"} className="bg-primary text-white">
-                  Connexion
+            {!isSigned ? (
+              <Link href={`/${lang}/login`}>
+                <Button typeof={"button"} className="bg-primary text-white mx-2">
+                  Se connecter
                 </Button>
               </Link>
             ) : (
-              <Link href={"/sign-up"}>
-                <Button typeof={"button"} className="bg-primary text-white">
+              <Link href={`/${lang}/register`} >
+                <Button typeof={"button"} className="bg-primary text-white mx-2">
                   Créer un compte
                 </Button>
               </Link>
             )}
+            | {/*whatsapp link*/}
             <UserAccountNav lang={lang} />
+            <Link href={"https://wa.me/+2120699906595"}
+                  target={"_blank"}
+                  rel={"noopener noreferrer"}
+                  className="flex items-center space-x-4 mx-2 mr-4"
+            >
+              <Image src="/whatsapp.png"
+                     alt="W+"
+                     width={20} height={20} className={"mr-2"} />
+            </Link> |
+            <SelectLocal
+              lang={lang}
+              translation={dictionary.Footer}
+            />
           </div>
         </div>
       </header>

@@ -13,8 +13,7 @@ function getLocale(request: NextRequest): string | undefined {
   const languages = new Negotiator({ headers: negotiatorHeaders }).languages(
     locales,
   )
-  const locale = matchLocale(languages, locales, i18n.defaultLocale)
-  return locale
+  return matchLocale(languages, locales, i18n.defaultLocale)
 }
 
 export async function middleware(request: NextRequest) {
@@ -63,6 +62,6 @@ export async function middleware(request: NextRequest) {
 export const config = {
   // Matcher ignoring `/_next/` and `/api/`
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|favicon-16x16.png|logo.webp|logo.png|logo_dark.png).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|favicon-16x16.png|logo.webp|whatsapp.png|logo.png|logo_dark.png).*)",
   ],
 }
