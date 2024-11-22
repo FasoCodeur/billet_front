@@ -11,8 +11,8 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
-import { useToast } from "@/hooks/use-toast"
-import { ToastAction } from "@/components/ui/toast"
+// import { useToast } from "@/hooks/use-toast"
+// import { ToastAction } from "@/components/ui/toast"
 
 type AlertProps = {
     open: boolean;
@@ -21,12 +21,12 @@ type AlertProps = {
     // title: string;
 };
 const DeleteAlert :React.FC<AlertProps> = ({open, setOpen}) => {
-    const { toast } = useToast()
+    // const { toast } = useToast()
     const handleDelet = () => {
-        toast({
-            description: "Your message has been sent.",
-        })
-        setOpen(!open)
+    //     toast({
+    //         description: "Your message has been sent.",
+    //     })
+    //     setOpen(!open)
     }
     
     return (

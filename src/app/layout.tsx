@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import {Poppins} from "next/font/google";
 import "./globals.css";
+import {store} from "@/redux/store";
+import {Provider} from "react-redux";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -22,7 +24,9 @@ export default function RootLayout({
       <body
         className={`${poppins.className} w-full h-screen bg-bgColor`}
       >
+      <Provider store={store}>
         {children}
+      </Provider>
       </body>
     </html>
   );
