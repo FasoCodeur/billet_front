@@ -1,15 +1,26 @@
 'use client'
-import React, {useState} from 'react';
+import React, { useState} from 'react';
 import {sideMenu} from "@/utils/utils";
 import Link from "next/link";
-import {usePathname} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 import {ExitIcon} from "@/app/fonts/icons";
+import {useDispatch} from "react-redux";
+import {logOut} from "@/redux/features/auth/authSlice";
+
 
 const SideMenu = () => {
     // const dispatch = useDispatch();
     // const router = useRouter();
+    const router = useRouter();
+
+    const dispatch = useDispatch()
     const path = usePathname();
     const [open, setOpen] = useState(false);
+    const handleLogout = (e: { preventDefault: () => void; }) => {
+        e.preventDefault();
+        dispatch(logOut());
+        router.push('/login')
+    }
     return (
 
         <div className="mb-48 lg:mb-0 z-50 overflow-hidden shrink-0">
@@ -22,7 +33,6 @@ const SideMenu = () => {
                     title="Logo"
                 >
                     <h1 className="text-secondary text-3xl font-bold">BYBUS</h1>
-                    {/*<LogoIcon className=""/>*/}
                 </Link>
                 {/* links */}
                 <div className="h-full flex-1  pb-2 flex flex-col gap-8 overflow-y-auto">
@@ -54,7 +64,7 @@ const SideMenu = () => {
                     </ul>
                     {/* logout btn */}
                     <button
-                        // onClick={handleLogout}
+                        onClick={handleLogout}
                         // disabled={isLoading}
                         className="py-4 shrink-0 flex font-semibold items-center gap-5 px-3  lg:pl-5 group disabled:cursor-not-allowed"
                     >
@@ -124,7 +134,7 @@ const SideMenu = () => {
                     </ul>
                     {/* logout btn */}
                     <button
-                        // onClick={handleLogout}
+                        onClick={handleLogout}
                         // disabled={isLoading}
                         className="py-4 shrink-0 flex bg-bgColor font-semibold items-center gap-5 px-3 rounded-tr-xl rounded-br-xl mobile__menu__shadow__links "
                     >

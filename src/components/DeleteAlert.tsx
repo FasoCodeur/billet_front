@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 
 import {
     AlertDialog,
@@ -11,22 +11,27 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
-// import { useToast } from "@/hooks/use-toast"
-// import { ToastAction } from "@/components/ui/toast"
+import {useDeleteCompanyMutation} from "@/redux/features/company/apiCompany";
+import toast from "react-hot-toast";
+
 
 type AlertProps = {
     open: boolean;
-    setOpen:any
-    // handleDelete:(e: any) => void;
-    // title: string;
+    setOpen:Dispatch<SetStateAction<boolean>>,
+    id: string;
 };
-const DeleteAlert :React.FC<AlertProps> = ({open, setOpen}) => {
-    // const { toast } = useToast()
-    const handleDelet = () => {
-    //     toast({
-    //         description: "Your message has been sent.",
-    //     })
-    //     setOpen(!open)
+const DeleteAlert :React.FC<AlertProps> = ({open, setOpen, id}) => {
+    const [deleteCompany, { isLoading, isError, error, isSuccess }] = useDeleteCompanyMutation();
+    const handleDelete = async () => {
+        try {
+           await deleteCompany(id).unwrap();
+            if (isSuccess){
+                toast.success('Company successfully deleted');
+            }
+        } catch (err) {
+            // Gérer les erreurs de la mutation
+            console.error('Error deleting company:', err);
+        }
     }
     
     return (
@@ -41,7 +46,9 @@ const DeleteAlert :React.FC<AlertProps> = ({open, setOpen}) => {
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                     <AlertDialogCancel onClick={() =>setOpen(!open)}>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={() =>handleDelet()} className="bg-red-500 hover:bg-red-700">Yes, delete</AlertDialogAction>
+                    <AlertDialogAction onClick={() =>handleDelete()} className="bg-red-500 hover:bg-red-700">
+                        {isLoading ? 'Deleting...' : ' Yes, delete'}
+                    </AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>

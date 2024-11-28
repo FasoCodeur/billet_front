@@ -16,7 +16,6 @@ const Header :React.FC<HeaderProps> = ({title, total}) => {
     return (
         <div className="hidden md:flex justify-between items-center p-5 z-50 ">
             <h1 className="font-bold">{`${title? title.toUpperCase():''}`} {`${total ? ' Total: ' + total : ''}`} </h1>
-
             <Select>
                 <SelectTrigger className="w-[180px]">
                     <SelectValue placeholder="Language" />

@@ -1,130 +1,14 @@
-// import Cookie from "js-cookie";
-// import jwtDecode from 'jwt-decode';
-//
-//
-// const getLocalAccessToken = () => {
-//     try {
-//         const accessToken = Cookie.get("accessToken")
-//         return accessToken
-//     } catch (error) {
-//         return null;
-//     }
-// };
-//
-// const getUser = () => {
-//     try {
-//         const user = Cookie.get("accessToken")
-//         return jwtDecode(user)
-//     } catch (error) {
-//         return null;
-//     }
-// };
-//
-//
-// const getToken = () => {
-//     try {
-//         const accessToken = Cookie.get("accessToken");
-//         const refreshToken = Cookie.get("refreshToken");
-//
-//         if(accessToken && refreshToken){
-//             const token = {
-//                 accessToken,
-//                 refreshToken
-//             }
-//             return token;
-//         }
-//
-//         return null;
-//
-//     } catch (error) {
-//         console.log(error)
-//         return null;
-//     }
-// };
-//
-// const updateLocalAccessToken = (token) => {
-//     try {
-//
-//         const accessTokenDecoded = jwtDecode(token.accessToken)
-//         const refreshTokenDecoded = jwtDecode(token.refreshToken)
-//         const accessTokenExpiry = new Date(accessTokenDecoded.exp * 1000)
-//         const refreshTokenExpiry = new Date(refreshTokenDecoded.exp * 1000)
-//
-//         const accessTokenCokieOptions = {
-//             httpOnly: false,
-//             //   expires: accessTokenExpiry,
-//             path: "/",
-//             sameSite: "strict",
-//             secure: process.env.NEXT_PUBLIC_NODE_ENV === "production",
-//         };
-//
-//         const refreshTokenCokieOptions = {
-//             httpOnly: false,
-//             //   expires: refreshTokenExpiry,
-//             path: "/",
-//             sameSite: "strict",
-//             secure: process.env.NEXT_PUBLIC_NODE_ENV === "production",
-//         };
-//
-//
-//         Cookie.set("accessToken", token.accessToken, accessTokenCokieOptions);
-//         Cookie.set("refreshToken", token.refreshToken, refreshTokenCokieOptions);
-//
-//     } catch (error) {
-//         return false;
-//     }
-// }
-//
-// const removeUser = () => {
-//     try {
-//         const token = Cookie.get("accessToken")
-//         if(token) {
-//             Cookies.remove('accessToken', { path: '/' })
-//         }
-//     } catch (error) {
-//         console.log(error);
-//         return false;
-//     }
-// };
-//
-// const getExpiryDate = async (token) => {
-//     const decodedUser = jwtDecode(token?.refreshToken)
-//     return new Date(decodedUser.exp * 1000)
-// }
-//
-// const isAccessExpired = () => {
-//     try {
-//         const accessToken = Cookie.get("accessToken");
-//         if(accessToken){
-//             const decodedUser = jwtDecode(accessToken)
-//             return new Date().getTime() > new Date(decodedUser.exp * 1000);
-//         }
-//
-//         return true;
-//     } catch (error) {
-//         return true;
-//     }
-// }
-//
-// const TokenService = {
-//     getLocalAccessToken,
-//     updateLocalAccessToken,
-//     removeUser,
-//     getExpiryDate,
-//     isAccessExpired,
-//     getToken,
-//     getUser
-// };
-//
-// export default TokenService;
-
 "use client"
 import {jwtDecode} from "jwt-decode";
 
+interface Token {
+    access_token: string;
+    refresh_token: string;
+}
+
 const getLocalAccessToken = () => {
     try {
-        const accessToken = localStorage.getItem("accessToken");
-        return accessToken;
+        return window.localStorage.getItem("accessToken");
     } catch (error) {
         console.error("Error getting local access token:", error);
         return null;
@@ -133,8 +17,10 @@ const getLocalAccessToken = () => {
 
 const getUser = () => {
     try {
-        const token = localStorage.getItem("accessToken");
-        return token ? jwtDecode(token) : null;
+        if (typeof window !== 'undefined' && window.localStorage) {
+            const token = window.localStorage.getItem("accessToken");
+            return token ? jwtDecode(token) : null;
+        }
     } catch (error) {
         console.error("Error decoding user token:", error);
         return null;
@@ -143,11 +29,13 @@ const getUser = () => {
 
 const getToken = () => {
     try {
-        const accessToken = localStorage.getItem("accessToken");
-        const refreshToken = localStorage.getItem("refreshToken");
+        if (typeof window !== 'undefined' && window.localStorage) {
+            const accessToken = localStorage.getItem("accessToken");
+            const refreshToken = localStorage.getItem("refreshToken");
 
-        if (accessToken && refreshToken) {
-            return { accessToken, refreshToken };
+            if (accessToken && refreshToken) {
+                return {accessToken, refreshToken};
+            }
         }
 
         return null;
@@ -157,16 +45,21 @@ const getToken = () => {
     }
 };
 
-const updateLocalAccessToken = (token) => {
+const updateLocalAccessToken = (token: Token) => {
     try {
-        const accessTokenDecoded = jwtDecode(token.accessToken);
-        const refreshTokenDecoded = jwtDecode(token.refreshToken);
+        const accessTokenDecoded = jwtDecode(token.access_token);
+        const refreshTokenDecoded = jwtDecode(token.refresh_token);
+
+        if (!accessTokenDecoded.exp || !refreshTokenDecoded.exp) {
+            console.error('Expiration time (exp) missing from token');
+            return false;
+        }
 
         const accessTokenExpiry = new Date(accessTokenDecoded.exp * 1000);
         const refreshTokenExpiry = new Date(refreshTokenDecoded.exp * 1000);
 
-        localStorage.setItem("accessToken", token.accessToken);
-        localStorage.setItem("refreshToken", token.refreshToken);
+        localStorage.setItem("accessToken", token.access_token);
+        localStorage.setItem("refreshToken", token.refresh_token);
         localStorage.setItem("accessTokenExpiry", accessTokenExpiry.toISOString());
         localStorage.setItem("refreshTokenExpiry", refreshTokenExpiry.toISOString());
 
@@ -190,22 +83,26 @@ const removeUser = () => {
     }
 };
 
-const getExpiryDate = (token) => {
+const getExpiryDate = (token: { refreshToken: string; }) => {
     try {
         const decodedUser = jwtDecode(token?.refreshToken);
-        return new Date(decodedUser.exp * 1000);
+        if (decodedUser.exp)
+            return new Date(decodedUser.exp * 1000);
+
     } catch (error) {
         console.error("Error decoding expiry date:", error);
         return null;
     }
 };
 
-const isAccessExpired = () => {
+const isAccessExpired = (): boolean => {
     try {
-        const accessToken = localStorage.getItem("accessToken");
+        const accessToken = window.localStorage.getItem("accessToken");
         if (accessToken) {
             const decodedToken = jwtDecode(accessToken);
-            return new Date().getTime() > decodedToken.exp * 1000;
+
+            if (decodedToken.exp)
+                return new Date().getTime() > decodedToken.exp * 1000;
         }
         return true;
     } catch (error) {
