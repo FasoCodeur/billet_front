@@ -7,10 +7,7 @@ import {ExitIcon} from "@/app/fonts/icons";
 import {useDispatch} from "react-redux";
 import {logOut} from "@/redux/features/auth/authSlice";
 
-
 const SideMenu = () => {
-    // const dispatch = useDispatch();
-    // const router = useRouter();
     const router = useRouter();
 
     const dispatch = useDispatch()
@@ -25,7 +22,7 @@ const SideMenu = () => {
 
         <div className="mb-48 lg:mb-0 z-50 overflow-hidden shrink-0">
             {/* for destop */}
-            <div className="h-screen hidden lg:flex flex-col overflow-hidden w-[300px] lg:w-[300px]">
+            <div className="h-screen hidden lg:flex flex-col overflow-hidden w-[250px] lg:w-[250px]">
                 {/* logo */}
                 <Link
                     href={"/dashboard"}
@@ -34,9 +31,7 @@ const SideMenu = () => {
                 >
                     <h1 className="text-secondary text-3xl font-bold">BYBUS</h1>
                 </Link>
-                {/* links */}
                 <div className="h-full flex-1  pb-2 flex flex-col gap-8 overflow-y-auto">
-                    {/* link items */}
                     <ul
                     >
                         {sideMenu.map((item, index) => (

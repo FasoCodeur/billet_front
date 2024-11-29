@@ -78,7 +78,7 @@ const Companies = () => {
             </div>
             <div className="mt-8 flow-root">
                 <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div className="justify-between inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                    <div className="justify-between inline-block min-w-full py-1 align-middle sm:px-6 lg:px-8">
                     {/*<div className=" flex flex-col justify-around ">*/}
                         <table className="min-w-full divide-y divide-gray-300">
                             <thead>
@@ -138,9 +138,11 @@ const Companies = () => {
                                                         <DropdownMenuContent className="bg-bgColor font-semibold " align="center">
                                                             <DropdownMenuItem
                                                                 className="hover:bg-secondarylith hover:text-black text-gray-500">
-                                                                <Link href="/company_infos"
-                                                                      className="flex gap-1 items-center"><FaEye
-                                                                    size={14}/>View</Link>
+                                                                <Link
+                                                                    // href={`${person.id}/company_info`}
+                                                                    href={`/company_info/${person.id}`}
+                                                                      className="flex gap-1 items-center">
+                                                                    <FaEye size={14}/>View</Link>
                                                             </DropdownMenuItem>
                                                             <DropdownMenuItem
                                                                 className="hover:bg-secondarylith hover:text-black text-gray-500"

@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from "@/components/header";
-import DatePiker from "@/app/(back_office)/dashboard/_components/DatePiker";
+// import DatePiker from "@/app/(back_office)/dashboard/_components/DatePiker";
 import {Button} from "@/components/ui/button";
 import ChartCompanySales from "@/app/(back_office)/dashboard/_components/ChartCompanySales";
 import ResentSales from "@/app/(back_office)/dashboard/_components/ResentSales";
@@ -13,7 +13,7 @@ const Page = () => {
             <div className="flex justify-between w-full items-center p-3">
                 <h1 className='font-bold text-2xl'>Dashboard</h1>
                 <div className="flex gap-2">
-                    <DatePiker/>
+                    {/*<DatePiker/>*/}
                     <Button className="bg-primary font-medium text-lg"
                             type="submit">
                         Download

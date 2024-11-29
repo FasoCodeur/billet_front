@@ -24,6 +24,12 @@ export const sideMenu = [
     { icon: PiWaveSquareDuotone, name: "Offres & Promo", path: "/promo" },
     { icon: IoSettingsOutline, name: "Paramètres", path: "/parametre" },
 ];
+export const navigation = [
+    { label:'Bus', name: "bus"},
+    { label:'Trajects', name: "traject"},
+    { label:'Reservations', name: "reservation"},
+    { label:'Payements', name: "payements"},
+];
 export const people = [
     { cin:'45789890776', name: 'Lindsay Walton', phone: '+2126051138',
         email: 'lindsay.walton@example.com', active: true },

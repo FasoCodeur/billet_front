@@ -57,7 +57,7 @@ export const apiCompany = apiSlice.injectEndpoints({
 export const {
     usePostCompanyMutation,
     useGetCompaniesQuery,
-    useGetCompanyById,
+    useGetCompanyByIdQuery,
     useUpdateCompaniesMutation,
     useDeleteCompanyMutation,
     useChangeCompanyMutation
