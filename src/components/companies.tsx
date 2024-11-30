@@ -14,13 +14,14 @@ import Pagination from "@/components/Pagination";
 import SearchInput from "@/components/SearchInput";
 import DropDownStatus from "@/components/DropDownStatus";
 import {useGetCompaniesQuery} from "@/redux/features/company/apiCompany";
+import Header from "@/components/header";
 
 const Companies = () => {
-    const [show, setShow] =useState(false);
     const [add, setAdd] =useState(false);
+    const [deleted, setDeleted] =useState(false);
+    const [mode, setMode] = useState<'add' | 'edit'>('add');
     const [currentPage, setCurrentPage] =useState(1);
     const [companyId, setCompanyId] =useState<string>('');
-    // const [limit, setLimit] = useState(10);
     const [status, setStatus] = useState<string | boolean | undefined>('');
     const [search, setSearch] =useState('');
     const { data, error, isLoading } = useGetCompaniesQuery({
@@ -32,14 +33,32 @@ const Companies = () => {
         setCurrentPage(page);
     };
 
-    const handleSelect = (id: string) => {
-        setShow(!show);
+    const handleSelect = (id: string,  mode: 'add' | 'edit') => {
+        setAdd(!add);
+        setCompanyId(id);
+        setMode(mode);
+    }
+    const handleDeleted = (id: string) => {
+        setDeleted(!deleted);
         setCompanyId(id);
     }
 
+    const getCompanyById = (id: string) => {
+        const company = data?.companies?.find(company => company.id === id);
+        return company ? {
+            ice: company?.ice,
+            name: company?.name,
+            email:company?.email,
+            phone:company?.phone,
+            city:company?.address?.city,
+            logo:company?.logo
+        } : null;
+    }
+
     return (
-        <div className="px-4 sm:px-6 lg:px-8 lg:mt-8 w-full h-screen">
-            <div className="sm:flex sm:items-center">
+        <div className="flex flex-col px-2 sm:px-6 lg:px-8 lg:mt-8 w-full h-screen">
+            <Header title='Conpany' total={data?.total_results}/>
+            <div className="sm:flex sm:items-center py-4">
                 <div className="sm:flex-auto">
                     <p className="mt-2 text-sm text-gray-700">
                         A list of all the company in your account including their cin, name, number, status.
@@ -49,7 +68,10 @@ const Companies = () => {
                     <button
                         type="button"
                         className="block rounded-md bg-secondary px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-secondarylith hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                        onClick={()=>setAdd(!add)}
+                        onClick={()=> {
+                            setAdd(!add);
+                            setMode('add');
+                        }}
                     >
                         Add company
                     </button>
@@ -76,7 +98,7 @@ const Companies = () => {
                     )
                 }
             </div>
-            <div className="mt-8 flow-root">
+            <div className="mt-8 flow-root overflow-y-auto">
                 <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="justify-between inline-block min-w-full py-1 align-middle sm:px-6 lg:px-8">
                     {/*<div className=" flex flex-col justify-around ">*/}
@@ -146,10 +168,10 @@ const Companies = () => {
                                                             </DropdownMenuItem>
                                                             <DropdownMenuItem
                                                                 className="hover:bg-secondarylith hover:text-black text-gray-500"
-                                                                onClick={() => setAdd(!add)}>Edit</DropdownMenuItem>
+                                                                onClick={() => handleSelect(person.id, 'edit')}>Edit</DropdownMenuItem>
                                                             {/*<DropdownMenuItem className="hover:bg-secondarylith text-green-500" onClick={()=>setShow(!show)}>Disabled</DropdownMenuItem>*/}
                                                             <DropdownMenuItem className="hover:bg-secondarylith text-red-500"
-                                                                              onClick={() => handleSelect(person.id)}>Deleted</DropdownMenuItem>
+                                                                              onClick={() => handleDeleted(person.id)}>Deleted</DropdownMenuItem>
                                                         </DropdownMenuContent>
                                                     </DropdownMenu>
                                                 </td>
@@ -165,8 +187,8 @@ const Companies = () => {
                             <Pagination currentPage={currentPage} totalPages={data?.total_pages} onPageChange={onPageChange}/>
                         </div>
                     </div>
-                    <DeleteAlert open={show} setOpen={setShow} id={companyId}/>
-                    <AddCompany open={add} setOpen={setAdd}/>
+                    <DeleteAlert open={deleted} setOpen={setDeleted} id={companyId}/>
+                    <AddCompany open={add} setOpen={setAdd} mode={mode} initialData={mode==='edit'?getCompanyById(companyId):null} id={mode==='edit'? companyId:null}/>
                 </div>
             </div>
         </div>

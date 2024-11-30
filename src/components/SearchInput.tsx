@@ -17,7 +17,7 @@ const SearchInput:React.FC<Search> = ({ onChange, placeholder }) => {
                 placeholder={placeholder}
                 id={"search"}
                 onChange={onChange}
-                className="bg-white border-none outline-none focus:ring-1 rounded-lg focus:ring-primary focus:shadow-md w-full h-10 pl-10 py-3 pr-3 tracking-wider"
+                className="bg-white z-30 border-none outline-none focus:ring-1 rounded-lg focus:ring-primary focus:shadow-md w-full h-10 pl-10 py-3 pr-3 tracking-wider"
             />
         </div>
     );

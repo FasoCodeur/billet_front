@@ -16,22 +16,22 @@ export const apiCompany = apiSlice.injectEndpoints({
         getCompanies: builder.query({
             query: ({ page = 1, limit = 10, name, status }) =>
                 `${baseEndPoint}/company?limit=${limit}&page=${page}&name=${name}&status=${status}`,
-            // providesTags: ["product"],
+            providesTags: ['company'],
         }),
 
         getCompanyById: builder.query({
             query: ({ id }) =>
                 `${baseEndPoint}/company/${id}`,
-            // providesTags: ["product"],
+            providesTags: ['company'],
         }),
 
         updateCompany: builder.mutation({
-            query: (id, data) => ({
+            query: ({id, data}) => ({
                 url: `${baseEndPoint}/company/${id}`,
                 method: "PATCH",
                 body:data
             }),
-            // invalidatesTags: ["Categories"],
+            invalidatesTags: ["company"],
         }),
 
         deleteCompany: builder.mutation({
@@ -39,7 +39,7 @@ export const apiCompany = apiSlice.injectEndpoints({
                 url: `${baseEndPoint}/company/${id}`,
                 method: "DELETE",
             }),
-            // invalidatesTags: ["company"],
+            invalidatesTags: ["company"],
         }),
 
         changeCompany: builder.mutation({
@@ -47,7 +47,7 @@ export const apiCompany = apiSlice.injectEndpoints({
                 url: `${baseEndPoint}/company/change_status/${id}`,
                 method: "PATCH",
             }),
-            // invalidatesTags: ["Categories"],
+            invalidatesTags: ["company"],
         }),
 
     }),
@@ -58,7 +58,7 @@ export const {
     usePostCompanyMutation,
     useGetCompaniesQuery,
     useGetCompanyByIdQuery,
-    useUpdateCompaniesMutation,
+    useUpdateCompanyMutation,
     useDeleteCompanyMutation,
     useChangeCompanyMutation
 } =apiCompany;
