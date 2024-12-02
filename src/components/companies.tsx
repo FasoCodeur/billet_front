@@ -6,7 +6,8 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { FaEye } from "react-icons/fa";
+import { FaEye, FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 import DeleteAlert from './DeleteAlert';
 import AddCompany from './addCompany';
 import Link from 'next/link';
@@ -168,10 +169,11 @@ const Companies = () => {
                                                             </DropdownMenuItem>
                                                             <DropdownMenuItem
                                                                 className="hover:bg-secondarylith hover:text-black text-gray-500"
-                                                                onClick={() => handleSelect(person.id, 'edit')}>Edit</DropdownMenuItem>
+                                                                onClick={() => handleSelect(person.id, 'edit')}><FaEdit /> Edit</DropdownMenuItem>
                                                             {/*<DropdownMenuItem className="hover:bg-secondarylith text-green-500" onClick={()=>setShow(!show)}>Disabled</DropdownMenuItem>*/}
                                                             <DropdownMenuItem className="hover:bg-secondarylith text-red-500"
-                                                                              onClick={() => handleDeleted(person.id)}>Deleted</DropdownMenuItem>
+                                                                              onClick={() => handleDeleted(person.id)}><MdDelete />
+                                                                Deleted</DropdownMenuItem>
                                                         </DropdownMenuContent>
                                                     </DropdownMenu>
                                                 </td>

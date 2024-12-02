@@ -18,6 +18,11 @@ export const apiTraject = apiSlice.injectEndpoints({
                 `${baseEndPoint}/trajet?limit=${limit}&page=${page}&name=${name}&status=${status}`,
             // providesTags: ["product"],
         }),
+        getAllTrajets: builder.query({
+            query: ({ page = 1, limit = 10, companyName, startingPoint, arrivalPoint, price  }) =>
+                `${baseEndPoint}/trajet/get_all/trajets?limit=${limit}&page=${page}&companyName=${companyName}&startingPoint=${startingPoint}&arrivalPoint=${arrivalPoint}&price=${price}`,
+            providesTags: ["trajet"],
+        }),
 
         getTrajetById: builder.query({
             query: ({ id }) =>
@@ -58,7 +63,8 @@ export const {
     usePostTrajetMutation,
     useGetTrajectsQuery,
     useGetTrajetByIdQuery,
+    useGetAllTrajetsQuery,
     useUpdateCompaniesMutation,
     useDeleteTrajetMutation,
     useChangeTrajetMutation
-} =apiTrajet;
+} =apiTraject;

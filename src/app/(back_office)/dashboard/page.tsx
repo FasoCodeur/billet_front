@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from "@/components/header";
-// import DatePiker from "@/app/(back_office)/dashboard/_components/DatePiker";
 import {Button} from "@/components/ui/button";
 import ChartCompanySales from "@/app/(back_office)/dashboard/_components/ChartCompanySales";
 import ResentSales from "@/app/(back_office)/dashboard/_components/ResentSales";
@@ -84,8 +83,6 @@ const Page = () => {
                     <ResentSales/>
                 </div>
             </div>
-            {/*My Dashbord*/}
-            {/*<h1 className="text-red-300 text-3xl">BYBUS</h1>*/}
         </div>
     );
 };
